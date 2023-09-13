@@ -4,13 +4,13 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="cfnresponse",
-    version="1.1.2",
+    name="cfnresponse2",
+    version="1.0.0",
     author="Amazon Web Services",
     description="Send a response object to a custom resource by way of an Amazon S3 presigned URL",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/gene1wood/cfnresponse",
+    url="https://github.com/ggiallo28/cfnresponse",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
