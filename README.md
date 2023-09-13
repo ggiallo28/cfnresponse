@@ -13,21 +13,19 @@ pip install cfnresponse2
 Alternatively, you have the option to download it directly or upload it to Amazon S3:
 
 ```python
-import urllib3
-import sys
-import os
+import urllib3, sys, os
 
-# Download cfnresponse.py from GitHub or upload it to Amazon S3
-github_raw_url = "https://raw.githubusercontent.com/ggiallo28/cfnresponse/master/cfnresponse/__init__.py"
+sys.path.append("/tmp")
+raw_url = "https://raw.githubusercontent.com/ggiallo28/cfnresponse/master/cfnresponse/__init__.py"
+with open("/tmp/cfnresponse.py", "wb") as f, urllib3.PoolManager() as http:
+    f.write(http.request("GET", raw_url).data)
 
-with open("cfnresponse.py", 'wb') as out_file, urllib3.PoolManager() as http:
-    out_file.write(http.request('GET', github_raw_url).data)
-
-# Add the package to your Python path
-sys.path.append("cfnresponse.py")
-
-# Import the cfnresponse module
 from cfnresponse import register_handler, lambda_handler
+
+
+@register_handler("create", "update", "delete")
+def myfun(event, context):
+    return {}
 ```
 
 ## Practical Use Cases

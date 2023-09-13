@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="cfnresponse2",
-    version="1.0.6",
+    version="1.0.7",
     author="Amazon Web Services",
     description="Send a response object to a custom resource by way of an Amazon S3 presigned URL",
     long_description=long_description,
