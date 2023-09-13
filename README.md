@@ -17,17 +17,17 @@ import urllib3
 import sys
 import os
 
-# Download cfnresponse2.py from GitHub or upload it to Amazon S3
+# Download cfnresponse.py from GitHub or upload it to Amazon S3
 github_raw_url = "https://raw.githubusercontent.com/ggiallo28/cfnresponse/master/cfnresponse/__init__.py"
 
-with open("cfnresponse2.py", 'wb') as out_file, urllib3.PoolManager() as http:
+with open("cfnresponse.py", 'wb') as out_file, urllib3.PoolManager() as http:
     out_file.write(http.request('GET', github_raw_url).data)
 
 # Add the package to your Python path
-sys.path.append("cfnresponse2.py")
+sys.path.append("cfnresponse.py")
 
-# Import the cfnresponse2 module
-from cfnresponse2 import register_handler, lambda_handler
+# Import the cfnresponse module
+from cfnresponse import register_handler, lambda_handler
 ```
 
 ## Practical Use Cases
