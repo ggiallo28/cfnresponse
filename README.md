@@ -1,34 +1,52 @@
-# AWS CloudFormation Custom Resource Handling with Python's `cfnresponse` Package
+# Streamline AWS CloudFormation Custom Resource Management with Python's `cfnresponse2`
 
-The `cfnresponse` package is a Python module tailored for streamlining custom resource management in AWS CloudFormation, especially within AWS Lambda environments. This package empowers developers to create, update, and delete custom resources seamlessly using Lambda functions.
+Simplify the management of custom resources in AWS CloudFormation, especially within AWS Lambda environments, using the `cfnresponse2` Python package.
 
-## Practical Use
+## Installation
 
-Designed primarily for AWS Lambda functions serving as custom resource handlers in CloudFormation stacks, the `cfnresponse` package extends CloudFormation's capabilities by enabling the execution of custom logic during stack creation, updates, or deletions.
+You can effortlessly install the `cfnresponse2` package via pip:
 
-For detailed examples showcasing how to leverage the `cfnresponse` package, you can explore the [samples](https://github.com/ggiallo28/cfnresponse/tree/907255318ae6bea3729818036c20c323f5790952/samples) directory in this repository. Each sample demonstrates various scenarios of custom resource handling within CloudFormation.
+```bash
+pip install cfnresponse2
+```
+
+Alternatively, you have the option to download it directly or upload it to Amazon S3:
+
+```python
+import urllib3
+import sys
+import os
+
+# Download cfnresponse2.py from GitHub or upload it to Amazon S3
+github_raw_url = "https://raw.githubusercontent.com/ggiallo28/cfnresponse/master/cfnresponse/__init__.py"
+
+with open("cfnresponse2.py", 'wb') as out_file, urllib3.PoolManager() as http:
+    out_file.write(http.request('GET', github_raw_url).data)
+
+# Add the package to your Python path
+sys.path.append("cfnresponse2.py")
+
+# Import the cfnresponse2 module
+from cfnresponse2 import register_handler, lambda_handler
+```
+
+## Practical Use Cases
+
+`cfnresponse2` is designed with AWS Lambda functions in mind, serving as custom resource handlers in CloudFormation stacks. It simplifies CloudFormation operations such as creating, updating, and deleting custom resources. This empowers you to execute custom logic during stack operations.
+
+For comprehensive examples showcasing effective usage of the `cfnresponse2` package, explore the [samples](https://github.com/ggiallo28/cfnresponse/tree/907255318ae6bea3729818036c20c323f5790952/samples) directory within the repository. These samples cover various scenarios of custom resource management within CloudFormation.
 
 ## Repository Structure
 
-The project repository is structured as follows:
+The project repository is organized as follows:
 
-- `cfnresponse`: Houses the `__init__.py` file, providing the core `cfnresponse` module.
-- `LICENSE`: Contains licensing information pertinent to the package.
-- `README.md`: The very document you are reading, offering essential usage instructions.
-- `samples`: Comprises sample Lambda functions that exemplify practical `cfnresponse` usage (actual code is found in the repository, not within this README).
-- `setup.py`: Configuration file for setting up the package.
-- `tests`: Encompasses test cases tailored for evaluating the `cfnresponse` package's functionality.
+- `cfnresponse`: Houses the `__init__.py` file, serving as the core of the `cfnresponse2` module.
+- `LICENSE`: Contains licensing information associated with the package.
+- `README.md`: The document you are currently reading, offering essential instructions for usage.
+- `samples`: Contains sample Lambda functions that provide practical demonstrations of `cfnresponse2` usage. The actual code resides in the repository, not within this README.
+- `setup.py`: A configuration file for setting up the package.
+- `tests`: Contains test cases tailored to evaluate the functionality of the `cfnresponse2` package.
 
 ## Important Note
 
-This package maintains backward compatibility with Amazon Web Services (AWS) cfnresponse module, which is available within Python AWS Lambda environments. If you wish to compare the code in this package with the original, you can do so with the following commands:
-
-```bash
-if [ "$(curl -s https://raw.githubusercontent.com/awslabs/aws-cloudformation-templates/master/aws/services/CloudFormation/MacrosExamples/StackMetrics/lambda/cfnresponse.py | sha256sum)" = "$(curl -s https://raw.githubusercontent.com/gene1wood/cfnresponse/master/cfnresponse/__init__.py | sha256sum)" ]; then
-    echo "GitHub version matches AWS version";
-fi
-
-if [ "$(curl -s https://raw.githubusercontent.com/awslabs/aws-cloudformation-templates/master/aws/services/CloudFormation/MacrosExamples/StackMetrics/lambda/cfnresponse.py | sha256sum)" = "$(wget --quiet https://files.pythonhosted.org/packages/03/69/2d3fafdf434a0d8ef62a5c1fa09feda25b31fad4db20c54ed067054f9b95/cfnresponse-1.1.2-py2.py3-none-any.whl && unzip -p cfnresponse-1.1.2-py2.py3-none-any.whl cfnresponse/__init__.py | sha256sum && rm cfnresponse-1.1.2-py2.py3-none-any.whl)" ]; then
-    echo "PyPI version matches AWS version";
-fi
-```
+`cfnresponse2` maintains compatibility with Amazon Web Services (AWS) `cfnresponse` module, readily available within Python AWS Lambda environments. You can seamlessly update your code with this package, ensuring a smooth transition without disruptions.
