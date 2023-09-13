@@ -36,6 +36,28 @@ from cfnresponse import register_handler, lambda_handler
 
 For comprehensive examples showcasing effective usage of the `cfnresponse2` package, explore the [samples](https://github.com/ggiallo28/cfnresponse/tree/907255318ae6bea3729818036c20c323f5790952/samples) directory within the repository. These samples cover various scenarios of custom resource management within CloudFormation.
 
+```python
+from cfnresponse import register_handler, lambda_handler
+
+@register_handler("create")
+def custom_create(event, context):
+    # Your custom logic for handling the 'create' action
+    response_data = {"message": "Resource creation successful"}
+    return response_data
+
+@register_handler("update")
+def custom_update(event, context):
+    # Your custom logic for handling the 'update' action
+    response_data = {"message": "Resource update successful"}
+    return response_data
+
+@register_handler("delete")
+def custom_delete(event, context):
+    # Your custom logic for handling the 'delete' action
+    response_data = {"message": "Resource deletion successful"}
+    return response_data
+```
+
 ## Repository Structure
 
 The project repository is organized as follows:
